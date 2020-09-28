@@ -80,6 +80,7 @@ class Game
     updateEnemies();
     updateEnemies2();
     updateFood();
+    updateFood2();
     checkForCollisions();
     checkForCollisionsP2();
     checkForFoodCollisions();
@@ -270,6 +271,61 @@ private void updateEnemies2()
         //We follow
         int dx = player.getX() - food[i].getX();
         int dy = player.getY() - food[i].getY();
+        if (abs(dx) < abs(dy))
+        {
+          if (dx < 0)
+          {
+            //Player is to the right
+            food[i].moveRight();
+          } else
+          {
+            //Player is to the left
+            food[i].moveLeft();
+          }
+        } else if (dy > 0)
+        {
+          //Player is down;
+          food[i].moveDown();
+        } else
+        {//Player is up;
+          food[i].moveUp();
+        }
+      } else
+      {
+        //We move randomly
+        int move = rnd.nextInt(4);
+        if (move == 0)
+        {
+          //Move right
+          food[i].moveRight();
+        } else if (move == 1)
+        {
+          //Move left
+          food[i].moveLeft();
+        } else if (move == 2)
+        {
+          //Move up
+          food[i].moveUp();
+        } else if (move == 3)
+        {
+          //Move down
+          food[i].moveDown();
+        }
+      }
+    }
+  }
+  
+  private void updateFood2()
+  {
+    for (int i = 0; i < food.length; ++i)
+    {
+      //Should we follow or move randomly?
+      //2 out of 3 we will follow..
+      if (rnd.nextInt(3) < 2)
+      {
+        //We follow
+        int dx = player2.getX() - food[i].getX();
+        int dy = player2.getY() - food[i].getY();
         if (abs(dx) < abs(dy))
         {
           if (dx < 0)
