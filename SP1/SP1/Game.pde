@@ -13,9 +13,13 @@ class Game
   private Dot player2;
   private Dot[] enemies;
   private Dot[] food;
+  private boolean gameOverP1;
+  private boolean gameOverP2;
 
   Game(int width, int height, int numberOfEnemies, int numberOfFood)
   {
+    gameOverP1=false;
+    gameOverP2=false;
     if (width < 10 || height < 10)
     {
       throw new IllegalArgumentException("Width and height must be at least 10");
@@ -75,6 +79,7 @@ class Game
 
   public void update()
   {
+    
     updatePlayer();
     updatePlayer2();
     updateEnemies();
@@ -87,6 +92,14 @@ class Game
     checkForFoodCollisionsP2();
     clearBoard();
     populateBoard();
+    if (gameOverP2 != false) {
+      board[player2.getX()][player2.getY()] = 0;
+      noLoop();
+    }
+    if (gameOverP1 != false) {
+      board[player.getX()][player.getY()] = 0;
+      noLoop();
+    }
   }
 
 
@@ -107,7 +120,8 @@ class Game
       }
     }
   }
-
+  
+ 
   private void updatePlayer()
   {
     //Update player
@@ -205,7 +219,7 @@ class Game
     }
   }
 
-private void updateEnemies2()
+  private void updateEnemies2()
   {
     for (int i = 0; i < enemies.length; ++i)
     {
@@ -314,7 +328,7 @@ private void updateEnemies2()
       }
     }
   }
-  
+
   private void updateFood2()
   {
     for (int i = 0; i < food.length; ++i)
@@ -324,8 +338,8 @@ private void updateEnemies2()
       if (rnd.nextInt(3) < 2)
       {
         //We follow
-        int dx = player2.getX() - food[i].getX();
-        int dy = player2.getY() - food[i].getY();
+        int dx = player.getX() - food[i].getX();
+        int dy = player.getY() - food[i].getY();
         if (abs(dx) < abs(dy))
         {
           if (dx < 0)
@@ -395,6 +409,9 @@ private void updateEnemies2()
       {
         //We have a collision
         --playerLife;
+        if (playerLife<=0) {
+          gameOverP1=true;
+        }
       }
     }
   }
@@ -408,6 +425,9 @@ private void updateEnemies2()
       {
         //We have a collision
         --player2Life;
+        if (player2Life<=0) {
+          gameOverP2=true;
+        }
       }
     }
   }
