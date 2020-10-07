@@ -1,31 +1,27 @@
-public class Car {
-   private String make;
-   private String model;
-   private int year;
-   private String bodyStyle;
-   private String Driver;
 
-    public Car(String make, String model, int year, String bodyStyle){
+public class Car {
+    private String make;
+    private String model;
+    private int year;
+    private String bodyStyle;
+    private String Driver;
+
+    public Car(String make, String model, int year, String bodyStyle) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.bodyStyle = bodyStyle;
-
-
-
-
     }
 
-    @Override
     public String toString() {
-        return "Make: "+make+". Model: "+model+ " ("+ year + "), BodyStyle: "+bodyStyle;
+        return "Make: " + this.make + ". Model: " + this.model + " (" + this.year + "), BodyStyle: " + this.bodyStyle;
     }
 
     public String getdriver() {
-        return Driver;
+        return this.Driver;
     }
 
     public void setdriver(String driver) {
-        Driver = driver;
+        this.Driver = driver;
     }
 }

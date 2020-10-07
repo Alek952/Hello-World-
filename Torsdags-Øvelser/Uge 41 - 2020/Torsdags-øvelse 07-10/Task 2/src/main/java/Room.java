@@ -4,35 +4,26 @@ public class Room {
     int numberOfLamps;
     int numberOfWindows;
 
-    public Room(int walls, int numberOfDrops, int numberOfLamps, int numberOfWindows){
+    public Room(int walls, int numberOfDrops, int numberOfLamps, int numberOfWindows) {
         this.numberOfDrops = numberOfDrops;
         this.numberOfLamps = numberOfLamps;
         this.numberOfWindows = numberOfWindows;
         this.walls = walls;
-
-
     }
 
     public int getNumberOfDrops() {
-
-        return numberOfDrops;
+        return this.numberOfDrops;
     }
 
     public int getNumberOfLamps() {
-
-        return numberOfLamps;
+        return this.numberOfLamps;
     }
 
     public int getNumberOfWindows() {
-
-        return numberOfWindows;
+        return this.numberOfWindows;
     }
 
     public int getWalls() {
-        return walls;
+        return this.walls;
     }
-
 }
-
-
-
